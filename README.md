@@ -1,183 +1,117 @@
-Meal Analyzer & Planner
+📖 Meal Analyzer & Planner – Setup & Usage Guide
 
+This document provides detailed setup and usage instructions for the Meal Analyzer & Planner application.
 
-An AI-powered Flutter application that analyzes meal photos, generates personalized meal plans, and tracks nutritional analytics using Google Gemini AI.
+🚀 Quick Setup
 
-</div>
-📱 Features
-🍽️ Meal Photo Analysis: AI-powered food recognition and nutritional breakdown
+Clone Repository & Install Dependencies
 
-📋 Personalized Meal Planning: Generate daily meal plans based on dietary goals
-
-📊 Nutrition Tracking: History and analytics with visual charts
-
-📷 Camera Integration: Direct photo capture for meal analysis
-
-🔍 Barcode Scanning: QR/barcode support for packaged foods
-
-🌙 Dark/Light Theme: Automatic theme switching with system synchronization
-
-💾 Offline Storage: Local data persistence for analyzed meals and plans
-
-🚀 Getting Started
-Prerequisites
-Flutter SDK (3.19.0 or higher)
-
-Dart (3.3.0 or higher)
-
-Android device/emulator (API 21+)
-
-Google Gemini API key
-
-Installation
-Clone the repository
-
-bash
 git clone https://github.com/your-username/meal-analyzer-planner.git
 cd meal-analyzer-planner
-Install dependencies
-
-bash
 flutter pub get
-Set up API key
 
-Get your Google Gemini API key from Google AI Studio
 
-Create a .env file in the root directory:
+Get API Key
 
-env
-GEMINI_API_KEY=your_actual_api_key_here
-Run the application
+Visit Google AI Studio
 
-bash
+Generate a Gemini API Key
+
+Create Environment File
+In the root directory, create a .env file and add:
+
+GEMINI_API_KEY=your_key_here
+
+
+Run the Application
+
 flutter run
-📸 Screenshots
-Analysis Screen	Meal Planner	History & Analytics
-https://screenshots/analysis.jpg	https://screenshots/planner.jpg	https://screenshots/history.jpg
-🏗️ Project Structure
-text
-lib/
-├── main.dart                 # Application entry point
-├── models/                   # Data models
-├── providers/                # State management
-│   ├── meal_provider.dart
-│   ├── meal_plan_provider.dart
-│   └── theme_provider.dart
-├── services/                 # External services
-│   ├── gemini_service.dart
-│   ├── database_service.dart
-│   └── camera_service.dart
-├── screens/                  # UI screens
-│   ├── home_screen.dart
-│   ├── analysis_screen.dart
-│   ├── planner_screen.dart
-│   └── history_screen.dart
-├── widgets/                  # Reusable components
-└── utils/                    # Helper utilities
-🛠️ Technologies Used
-Flutter: Cross-platform framework
 
-Dart: Programming language
+📱 App Overview
 
-Google Gemini AI: Meal analysis and planning
+This Flutter app provides three core functionalities:
 
-Provider: State management
+1️⃣ Meal Analysis (Camera & AI)
 
-SQLite: Local database storage
+Capture food photos using the device camera
 
-Camera: Image capture functionality
+AI-powered nutritional analysis using Gemini API
 
-HTTP: API communications
+Displays:
 
-🔧 Configuration
-Android Permissions
-Ensure your android/app/src/main/AndroidManifest.xml includes:
+Meal identification
 
-xml
-<uses-permission android:name="android.permission.CAMERA" />
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-Environment Variables
-Create a .env file with your API key:
+Calorie count
 
-env
-GEMINI_API_KEY=your_gemini_api_key_here
-📖 Usage Guide
-Analyzing a Meal
-Open the app and navigate to the "Analyze" tab
+Macronutrients & ingredients
 
-Tap the camera button to capture a meal photo
+Automatically saves to History
 
-View the AI-generated nutritional analysis
+2️⃣ Meal Planning
 
-Save the analysis to your history
+Set dietary preferences & calorie targets
 
-Generating a Meal Plan
-Go to the "Plan" tab
+Generate personalized meal plans using AI
 
-Set your dietary preferences and goals
+Customize based on dietary restrictions
 
-Tap "Generate Meal Plan"
+View complete daily nutrition summaries
 
-Review your personalized daily plan
+3️⃣ History & Analytics
 
-Viewing History
-Navigate to the "History" tab
+Browse previously analyzed meals
 
-Browse analyzed meals and generated plans
+Track nutritional trends over time
 
-View nutritional trends and analytics
+Barcode Scanning support for packaged foods
 
-Scanning Barcodes
-From the Analysis screen, tap the barcode icon
+🎯 Core Features
 
-Scan a product barcode using your camera
+✅ Dual Theme Support – Light/dark mode with system synchronization
+✅ Camera Integration – Capture meals directly in-app
+✅ AI-Powered Meal Planning – Personalized daily plans based on goals
+✅ Data Persistence – Local storage of meal history & preferences
+✅ Responsive UI – Works seamlessly across devices and screen sizes
 
-View nutritional information for packaged foods
+🔧 Technical Architecture
 
-🎨 Theming
-The app supports both light and dark themes with automatic system synchronization. Users can manually toggle themes via the settings icon.
+State Management: Provider
+ for efficient data flow
 
-📊 API Integration
-The app uses Google Gemini AI for:
+API Integration: Secure Gemini API communication
 
-Meal image analysis and nutritional breakdown
+Local Storage: SQLite database for offline functionality
 
-Personalized meal plan generation
+Camera Handling: Optimized image capture and processing
 
-Food recognition and ingredient detection
+Theme System: Persistent dynamic light/dark theme
 
-🤝 Contributing
-Fork the project
+📊 Outputs Generated
 
-Create your feature branch (git checkout -b feature/AmazingFeature)
+Nutrition Reports: Detailed breakdown of each analyzed meal
 
-Commit your changes (git commit -m 'Add some AmazingFeature')
+Meal Plans: AI-generated daily eating schedules
 
-Push to the branch (git push origin feature/AmazingFeature)
+Historical Data: Timeline of all analyzed foods with trends
 
-Open a Pull Request
+💡 Usage Flow
+graph LR
+A[📷 Capture] --> B[🔎 Analyze]
+B --> C[📅 Plan]
+C --> D[📊 Track]
 
-📝 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+A -->|Take photo or scan barcode| B
+B -->|View AI-generated data| C
+C -->|Generate meal plan| D
+D -->|Monitor progress| A
 
-🆘 Support
-If you encounter any issues or have questions:
 
-Check the FAQ
+Step-by-Step:
 
-Search existing issues
+Capture → Take a meal photo or scan a barcode
 
-Create a new issue with detailed information
+Analyze → AI processes and returns nutritional data
 
-🙏 Acknowledgments
-Google Gemini AI for nutritional analysis capabilities
+Plan → Generate personalized daily meal plans
 
-Flutter team for the excellent framework
-
-Open Food Facts for barcode database
-
-<div align="center">
-Made with ❤️ using Flutter
-
-</div>
+Track → Monitor progress with history and analytics
