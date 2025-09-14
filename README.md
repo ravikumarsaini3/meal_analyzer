@@ -3,11 +3,12 @@
 This document provides detailed setup and usage instructions for the Meal Analyzer & Planner application.
 
 🚀 Quick Setup
-(https://github.com/user-attachments/assets/8a5a1eb3-195a-46a6-93d0-348a3cca45d0)
+
+[demo](https://github.com/user-attachments/assets/8a5a1eb3-195a-46a6-93d0-348a3cca45d0)
 
 Clone Repository & Install Dependencies
 
-git clone https://github.com/your-username/meal-analyzer-planner.git
+https://github.com/ravikumarsaini3/meal_analyzer.git
 cd meal-analyzer-planner
 flutter pub get
 
