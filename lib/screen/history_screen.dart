@@ -202,7 +202,7 @@ class _HistoryScreenState extends State<HistoryScreen>
     );
   }
 
-// ------------ WEEKLY CALORIES CHART ------------
+
   Widget _buildWeeklyCaloriesChart(List<Meal> meals) {
     final weeklyData = _getWeeklyCaloriesData(meals);
 
@@ -255,7 +255,7 @@ class _HistoryScreenState extends State<HistoryScreen>
     );
   }
 
-// ------------ NUTRITION SUMMARY ------------
+
   Widget _buildNutritionSummary(List<Meal> meals) {
     final totalCalories = meals.fold<double>(0, (sum, meal) => sum + meal.nutrition.calories);
     final avgCalories = totalCalories / meals.length;
@@ -304,7 +304,7 @@ class _HistoryScreenState extends State<HistoryScreen>
     );
   }
 
-// ------------ MACRO DISTRIBUTION CHART ------------
+
   Widget _buildMacroDistributionChart(List<Meal> meals) {
     final totalProtein = meals.fold<double>(0, (sum, meal) => sum + meal.nutrition.protein);
     final totalCarbs = meals.fold<double>(0, (sum, meal) => sum + meal.nutrition.carbs);
@@ -356,7 +356,7 @@ class _HistoryScreenState extends State<HistoryScreen>
     );
   }
 
-// ------------ WEEKLY DATA HELPER ------------
+
   List<FlSpot> _getWeeklyCaloriesData(List<Meal> meals) {
     Map<int, double> dailyCalories = {for (int i = 0; i < 7; i++) i: 0};
 
@@ -395,23 +395,5 @@ class _HistoryScreenState extends State<HistoryScreen>
       ),
     );
   }
-  void _showDeleteDialogPlan(MealPlan plan, MealPlanProvider provider) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text('Delete Meal'),
-        content:  Text('Are you sure you want to delete this meal plan?'),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: Text('Cancel')),
-          TextButton(
-            onPressed: () {
-              provider.deletePlan(plan);
-              Navigator.pop(context);
-            },
-            child: Text('Delete', style: TextStyle(color: Colors.red)),
-          ),
-        ],
-      ),
-    );
-  }
+
 }

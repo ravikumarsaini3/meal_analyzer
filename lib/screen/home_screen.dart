@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../providers/theme_provider.dart';
 import 'meal_planinig_screen.dart';
 
 import 'history_screen.dart';
@@ -21,7 +23,20 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('AI Meal Analyzer'),
+        actions: [
+          IconButton(
+            icon:  Icon(themeProvider.isDarkMode ? Icons.light_mode : Icons.dark_mode),
+            onPressed: () {
+
+              themeProvider.toggleTheme();
+            },
+          ),
+        ],
+      ),
       body: _screens[_currentIndex],
       bottomNavigationBar: NavigationBar(
 
