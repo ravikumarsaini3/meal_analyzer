@@ -1,0 +1,55 @@
+name: Flutter CI/CD
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+  # Allow manual trigger from GitHub Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: 🏗️ Build & Upload APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: ☕ Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: 🐦 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.29.3'
+          channel: 'stable'
+          cache: true
+
+      - name: 📦 Get dependencies
+        run: flutter pub get
+
+      - name: 🔧 Create .env file
+        run: echo "GEMINI_API_KEY=${{ secrets.API_KEY }}" > .env
+
+      - name: 🔎 Analyze code
+        run: flutter analyze --no-fatal-infos
+
+      - name: 🧪 Run tests
+        run: flutter test
+        continue-on-error: true
+
+      - name: 🏗️ Build APK
+        run: flutter build apk --debug
+
+      - name: 📤 Upload APK to GitHub
+        uses: actions/upload-artifact@v4
+        with:
+          name: meal-analyzer-apk
+          path: build/app/outputs/flutter-apk/app-debug.apk
+          retention-days: 30
