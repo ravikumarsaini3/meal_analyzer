@@ -7,7 +7,7 @@ import 'package:meal_analyzer_app/providers/theme_provider.dart'; // Add this im
 import 'package:meal_analyzer_app/screen/home_screen.dart';
 import 'package:meal_analyzer_app/screen/new_task.dart';
 import 'package:provider/provider.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'services/camera_service.dart';
 
 void main() async {
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
                 seedColor: Colors.green,
                 brightness: Brightness.light,
               ),
-              textTheme: GoogleFonts.poppinsTextTheme(),
+           
               appBarTheme: AppBarTheme(
                 centerTitle: true,
                 elevation: 0,
@@ -70,10 +70,10 @@ class MyApp extends StatelessWidget {
                 seedColor: Colors.green,
                 brightness: Brightness.dark,
               ),
-              textTheme: GoogleFonts.poppinsTextTheme().apply(
-                bodyColor: Colors.white,
-                displayColor: Colors.white,
-              ),
+              // textTheme: GoogleFonts.poppinsTextTheme().apply(
+              //   bodyColor: Colors.white,
+              //   displayColor: Colors.white,
+              // ),
               appBarTheme: AppBarTheme(
                 centerTitle: true,
                 elevation: 0,
