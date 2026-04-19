@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
            
               appBarTheme: AppBarTheme(
                 centerTitle: true,
-                elevation: 0,
+                elevation: 4,
                 scrolledUnderElevation: 0,
                 backgroundColor: Colors.green.shade50,
                 foregroundColor: Colors.green.shade900,
