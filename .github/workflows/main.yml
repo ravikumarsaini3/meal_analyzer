@@ -14,7 +14,7 @@ name: "Build & Release"
 jobs:
   build:
     name: Build & Release
-    runs-on: ubuntu-latest        # ✅ Changed from windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
@@ -28,7 +28,13 @@ jobs:
           channel: 'stable'
           architecture: x64
 
-      - run: flutter pub get       # ✅ Added missing step
+      - name: Accept Android Licenses       # ✅ Fix for your error
+        run: yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses
+
+      - name: Install NDK                   # ✅ Explicitly install the required NDK
+        run: $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "ndk;29.0.14033849"
+
+      - run: flutter pub get
 
       - run: flutter build apk --release --split-per-abi
 
@@ -37,4 +43,4 @@ jobs:
         with:
           artifacts: "build/app/outputs/apk/release/*"
           tag: v1.0.${{ github.run_number }}
-          token: ${{ secrets.TOKEN }}  
+          token: ${{ secrets.TOKEN }}
