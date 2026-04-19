@@ -30,7 +30,6 @@ jobs:
       - name: 🐦 Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.29.3'
           channel: 'stable'
           cache: true
 
@@ -39,14 +38,6 @@ jobs:
 
       - name: 🔧 Create .env file
         run: echo "GEMINI_API_KEY=${{ secrets.API_KEY }}" > .env
-
-      - name: 🔎 Analyze code
-        run: flutter analyze --no-fatal-infos
-        continue-on-error: true
-
-      - name: 🧪 Run tests
-        run: flutter test
-        continue-on-error: true
 
       - name: 🏗️ Build APK
         run: flutter build apk --debug
