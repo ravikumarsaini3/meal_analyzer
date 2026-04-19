@@ -25,13 +25,14 @@ jobs:
 
       - uses: subosito/flutter-action@v2
         with:
+          flutter-version: '3.27.0'
           channel: 'stable'
           architecture: x64
 
-      - name: Accept Android Licenses       # ✅ Fix for your error
+      - name: Accept Android Licenses
         run: yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses
 
-      - name: Install NDK                   # ✅ Explicitly install the required NDK
+      - name: Install NDK
         run: $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "ndk;29.0.14033849"
 
       - run: flutter pub get
