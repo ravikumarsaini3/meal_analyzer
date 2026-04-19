@@ -29,11 +29,11 @@ jobs:
           channel: 'stable'
           architecture: x64
 
-      - name: Accept Android Licenses
-        run: yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses
+    #   - name: Accept Android Licenses
+    #     run: yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --licenses
 
-      - name: Install NDK
-        run: $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "ndk;29.0.14033849"
+    #   - name: Install NDK
+    #     run: $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "ndk;29.0.14033849"
 
       - name: Create .env file              # ✅ Fix for missing .env
         run: echo "${{ secrets.ENV_FILE }}" > .env
