@@ -25,7 +25,7 @@ jobs:
 
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.41.7'   # ✅ matches your pubspec SDK requirement
+          flutter-version: '3.41.7'
           channel: 'stable'
           architecture: x64
 
@@ -34,6 +34,9 @@ jobs:
 
       - name: Install NDK
         run: $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager "ndk;29.0.14033849"
+
+      - name: Create .env file              # ✅ Fix for missing .env
+        run: echo "${{ secrets.ENV_FILE }}" > .env
 
       - run: flutter pub get
 
