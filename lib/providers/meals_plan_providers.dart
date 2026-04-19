@@ -35,6 +35,11 @@ class MealPlanProvider with ChangeNotifier {
         preferredMeals: preferredMeals,
       );
 
+
+
+
+
+      
       _currentMealPlan = MealPlan.fromJson(planData);
 
       //  await MealPlanDatabaseService.savePlan(_currentMealPlan!);

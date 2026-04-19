@@ -23,20 +23,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('AI Meal Analyzer'),
-        actions: [
-          IconButton(
-            icon:  Icon(themeProvider.isDarkMode ? Icons.light_mode : Icons.dark_mode),
-            onPressed: () {
 
-              themeProvider.toggleTheme();
-            },
-          ),
-        ],
-      ),
+    return Scaffold(
+
       body: _screens[_currentIndex],
       bottomNavigationBar: NavigationBar(
 

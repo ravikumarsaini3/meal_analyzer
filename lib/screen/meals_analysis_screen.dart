@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/meal_provider.dart';
+import '../providers/theme_provider.dart';
 import '../services/camera_service.dart';
 import '../widgets/nutrition_card.dart';
 
@@ -14,7 +15,7 @@ class _MealAnalysisScreenState extends State<MealAnalysisScreen> {
   File? _selectedImage;
 
   Future<void> _takePicture() async {
-    final image = await CameraService.takePicture();
+    final image = await CameraService.pickImageCamera();
     if (image != null) {
       setState(() {
         _selectedImage = image;
@@ -114,10 +115,21 @@ class _MealAnalysisScreenState extends State<MealAnalysisScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Meal Analysis'),
-        centerTitle: true,
+        title: const Text('AI Meal Analyzer'),
+        actions: [
+
+          IconButton(
+            icon:  Icon(themeProvider.isDarkMode ? Icons.light_mode : Icons.dark_mode),
+            onPressed: () {
+
+              themeProvider.toggleTheme();
+            },
+          ),
+          SizedBox(width: 16),
+        ],
       ),
       body: Consumer<MealProvider>(
         builder: (context, mealProvider, child) {

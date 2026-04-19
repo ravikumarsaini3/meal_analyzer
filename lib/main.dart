@@ -5,6 +5,7 @@ import 'package:meal_analyzer_app/providers/meals_plan_providers.dart';
 import 'package:meal_analyzer_app/providers/meal_provider.dart';
 import 'package:meal_analyzer_app/providers/theme_provider.dart'; // Add this import
 import 'package:meal_analyzer_app/screen/home_screen.dart';
+import 'package:meal_analyzer_app/screen/new_task.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'services/camera_service.dart';
@@ -101,9 +102,7 @@ class MyApp extends StatelessWidget {
               dialogBackgroundColor: Colors.grey.shade800,
             ),
             themeMode: themeProvider.isDarkMode ? ThemeMode.dark : ThemeMode.light,
-            home: dotenv.env['GEMINI_API_KEY'] != null
-                ? HomeScreen()
-                : ApiKeySetupScreen(),
+            home: NewTask()
           );
         },
       ),

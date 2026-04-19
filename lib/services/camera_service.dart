@@ -54,6 +54,18 @@ class CameraService {
     }
     return null;
   }
+  static Future<File?> pickImageCamera() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(
+      source: ImageSource.camera,
+      imageQuality: 80,
+    );
+
+    if (image != null) {
+      return File(image.path);
+    }
+    return null;
+  }
 
   static void dispose() {
     _controller?.dispose();

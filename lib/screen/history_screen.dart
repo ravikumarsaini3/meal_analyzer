@@ -1,15 +1,16 @@
 import 'dart:io';
-import 'package:flutter/material.dart';
-import 'package:meal_analyzer_app/screen/meal_planinig_screen.dart';
-import 'package:provider/provider.dart';
+
 import 'package:fl_chart/fl_chart.dart';
-import '../providers/meal_provider.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../models/meal_model.dart';
-import '../models/meal_plan_model.dart';
+import '../providers/meal_provider.dart';
 import '../providers/meals_plan_providers.dart';
 
 class HistoryScreen extends StatefulWidget {
+  const HistoryScreen({super.key});
+
   @override
   _HistoryScreenState createState() => _HistoryScreenState();
 }
@@ -54,7 +55,7 @@ class _HistoryScreenState extends State<HistoryScreen>
     );
   }
 
-  // ----------- MEAL HISTORY TAB -----------
+
   Widget _buildHistoryTab() {
     return Consumer<MealProvider>(
       builder: (context, provider, child) {
@@ -128,7 +129,6 @@ class _HistoryScreenState extends State<HistoryScreen>
     );
   }
 
-  // ----------- SAVED PLANS TAB -----------
   Widget _buildPlansTab() {
     return Consumer<MealPlanProvider>(
       builder: (context, provider, child) {
@@ -143,31 +143,29 @@ class _HistoryScreenState extends State<HistoryScreen>
             final plan = provider.savedPlans[index];
             return GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => MealPlanningScreen()
-                  ),
-                );
+
               },
               child: Card(
                 margin: EdgeInsets.only(bottom: 12),
                 child: Padding(
-                  padding: EdgeInsets.all(16),
+                  padding: EdgeInsets.all(10),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Meal Plan - ${plan.totalCalories} kcal',
+                      Text(' Meal Plan - ${plan.totalCalories} kcal',
                           style: Theme.of(context).textTheme.titleMedium),
                       SizedBox(height: 8),
                       Text(
-                        'Protein: ${plan.totalProtein}g | Carbs: ${plan.totalCarbs}g | Fat: ${plan.totalFat}g',
+                        ' Protein :  ${plan.totalProtein}g | Carbs: ${plan.totalCarbs}g | Fat: ${plan.totalFat}g',
                         style: Theme.of(context).textTheme.bodySmall,
                       ),
-                      IconButton(
-                        onPressed: () =>     provider.deletePlan(plan),
-                        icon: Icon(Icons.delete_outline, color: Colors.red),
-                      ),
+                      ListTile(
+                        trailing:  IconButton(
+                          onPressed: () => provider.deletePlan(plan),
+                          icon: Icon(Icons.delete_outline, color: Colors.red,size: 25,),
+                        ),
+                      )
+
                     ],
                   ),
                 ),
@@ -179,7 +177,7 @@ class _HistoryScreenState extends State<HistoryScreen>
     );
   }
 
-  // ----------- ANALYTICS TAB -----------
+
   Widget _buildAnalyticsTab() {
     return Consumer<MealProvider>(
       builder: (context, provider, child) {
@@ -208,13 +206,13 @@ class _HistoryScreenState extends State<HistoryScreen>
 
     return Card(
       child: Padding(
-        padding: EdgeInsets.all(16),
+        padding: EdgeInsets.all(26),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('Weekly Calories', style: Theme.of(context).textTheme.titleMedium),
             SizedBox(height: 16),
-            Container(
+            SizedBox(
               height: 200,
               child: LineChart(
                 LineChartData(
@@ -237,7 +235,7 @@ class _HistoryScreenState extends State<HistoryScreen>
                   lineBarsData: [
                     LineChartBarData(
                       spots: weeklyData,
-                      isCurved: true,
+                      isCurved: false,
                       color: Theme.of(context).primaryColor,
                       barWidth: 3,
                       belowBarData: BarAreaData(
@@ -321,11 +319,14 @@ class _HistoryScreenState extends State<HistoryScreen>
           children: [
             Text('Macro Distribution', style: Theme.of(context).textTheme.titleMedium),
             SizedBox(height: 16),
-            Container(
+            SizedBox(
               height: 200,
               child: PieChart(
+                curve: Curves.easeInOut,
                 PieChartData(
-                  sections: [
+
+
+                sections: [
                     PieChartSectionData(
                       value: totalProtein,
                       title: 'Protein\n${(totalProtein / total * 100).toInt()}%',
